@@ -19,9 +19,37 @@
       logo
       </a>
       <ul class="right hide-on-med-and-down">
- 
-      <li><a href="<?= site_url('login/index'); ?>">Login</a></li>        
-        
+
+      <?php
+
+      if(isset($this->session->userdata))
+      {
+        if($this->session->userdata('perfil'))
+        {
+  
+        ?>
+  
+        <li><a href="<?= site_url('motos_controller/index'); ?>">Motos</a></li>        
+        <li><a href="<?= site_url('login/logout_ci'); ?>">Logout</a></li>        
+  
+        <?php
+  
+        }
+
+      }
+      else 
+      {
+
+      ?>
+
+        <li><a href="<?= site_url('login/index'); ?>">Login</a></li>        
+
+      <?php
+
+      }
+
+      ?>
+   
       </ul>
 
       <ul id="nav-mobile" class="sidenav">

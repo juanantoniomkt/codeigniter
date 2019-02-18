@@ -6,20 +6,24 @@
 class Admin extends CI_Controller 
 {
  
- public function __construct() 
- {
- parent::__construct();
- $this->load->library(array('session'));
- $this->load->helper(array('url'));
- }
- 
- public function index()
- {
- if($this->session->userdata('perfil') == FALSE || $this->session->userdata('perfil') != 'administrador')
- {
- redirect(site_url().'/login');
- }
- $data['titulo'] = 'Bienvenido Administrador';
- $this->load->view('admin_view',$data);
- }
+    public function __construct() 
+    {
+        parent::__construct();
+        $this->load->library(array('session'));
+        $this->load->helper(array('url'));
+    }
+    
+    public function index()
+    {
+        if($this->session->userdata('perfil') == FALSE || $this->session->userdata('perfil') != 'administrador')
+        {
+            redirect(site_url().'/login');
+        }
+
+        $data['titulo'] = 'Bienvenido Administrador';
+
+        $this->load->view('header', $data);
+        $this->load->view('admin_view',$data);
+		$this->load->view('footer');
+    }
 }
